@@ -1,1 +1,100 @@
-
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: angular-15-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-15-client
+  template:
+    metadata:
+      labels:
+        app: angular-15-client
+    spec:
+      containers:
+        - name: angular-15-client
+          image: quay.io/redhat-user-workloads/atul-fulambarkar-tenant/sample-springapp-tssc/sample-springapp-tssc:build-51a95-1691503370
+          ports:
+            - name: http
+              containerPort: 4200
+              protocol: TCP
+          resources:
+            requests:
+              memory: "180Mi"
+              cpu: "10m"
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: spring-boot-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-server
+  template:
+    metadata:
+      labels:
+        app: spring-boot-server
+    spec:
+      containers:
+        - name: spring-boot-server
+          image: quay.io/redhat-user-workloads/atul-fulambarkar-tenant/sample-springapp-tssc/sample-springapp-tssc:build-51a95-1691503370
+          ports:
+            - name: http
+              containerPort: 8081
+              protocol: TCP
+          resources:
+            requests:
+              memory: "180Mi"
+              cpu: "10m"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: angular-15-client-svc
+spec:
+  ports:
+    - name: http-4200
+      port: 4200
+      protocol: TCP
+      targetPort: 4200
+  selector:
+    app: angular-15-client    
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: spring-boot-server-svc
+spec:
+  ports:
+    - name: http-8081
+      port: 8081
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    app: spring-boot-server   
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:  
+  name: angular-15-client-rt
+spec:  
+  port: 
+    targetPort: 4200
+  to:  
+    kind: Service  
+    name: angular-15-client-svc
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:  
+  name: spring-boot-server-rt
+spec:  
+  port: 
+    targetPort: 8081
+  to:  
+    kind: Service  
+    name: spring-boot-server-svc
+    
