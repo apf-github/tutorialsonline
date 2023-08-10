@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: angular-15-client
-          image: quay.io/redhat-user-workloads/atul-fulambarkar-tenant/sample-springapp-tssc/sample-springapp-tssc:build-51a95-1691503370
+          image: quay.io/redhat-user-workloads/atul-fulambarkar-tenant/spring-boot-app-t1/angular-15-client-tutorialsonline:build-b2512-1691662904
           ports:
             - name: http
               containerPort: 4200
@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-server
-          image: quay.io/redhat-user-workloads/atul-fulambarkar-tenant/sample-springapp-tssc/sample-springapp-tssc:build-51a95-1691503370
+          image: quay.io/redhat-user-workloads/atul-fulambarkar-tenant/spring-boot-app-t1/spring-boot-server-tutorialsonline:0ef3937b10dcfc9e53a84b9422a9a2f83082d326
           ports:
             - name: http
               containerPort: 8081
