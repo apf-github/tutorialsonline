@@ -17,7 +17,7 @@ spec:
           image: quay.io/redhat-user-workloads/atul-fulambarkar-tenant/spring-boot-app-t1/angular-15-client-tutorialsonline:build-b2512-1691662904
           ports:
             - name: http
-              containerPort: 4200
+              containerPort: 3001
               protocol: TCP
           resources:
             requests:
@@ -56,10 +56,10 @@ metadata:
   name: angular-15-client-svc
 spec:
   ports:
-    - name: http-4200
-      port: 4200
+    - name: http-3001
+      port: 3001
       protocol: TCP
-      targetPort: 4200
+      targetPort: 3001
   selector:
     app: angular-15-client    
 ---
@@ -82,7 +82,7 @@ metadata:
   name: angular-15-client-rt
 spec:  
   port: 
-    targetPort: 4200
+    targetPort: 3001
   to:  
     kind: Service  
     name: angular-15-client-svc
