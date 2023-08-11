@@ -22,7 +22,11 @@ RUN npm run build
 FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
-COPY --from=build /usr/local/app/dist/angular-15-crud /usr/share/nginx/html
+COPY --from=build /usr/local/app/dist/. /usr/share/nginx/html
 
-# Expose port 80
+RUN chgrp -R root /var/cache/nginx /var/run /var/log/nginx && \
+    chmod -R 777 /var/cache/nginx /var/run /var/log/nginx
+
 EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
