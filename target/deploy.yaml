@@ -17,7 +17,7 @@ spec:
           image: quay.io/redhat-user-workloads/atul-fulambarkar-tenant/tutorialsonline/angular-15-client-tutorialsonline:build-0b6fd-1691762374
           ports:
             - name: http
-              containerPort: 3001
+              containerPort: 80
               protocol: TCP
           resources:
             requests:
@@ -56,10 +56,10 @@ metadata:
   name: angular-15-client-svc
 spec:
   ports:
-    - name: http-3001
-      port: 3001
+    - name: http-80
+      port: 80
       protocol: TCP
-      targetPort: 3001
+      targetPort: 80
   selector:
     app: angular-15-client    
 ---
@@ -82,7 +82,7 @@ metadata:
   name: angular-15-client-rt
 spec:  
   port: 
-    targetPort: 3001
+    targetPort: 80
   to:  
     kind: Service  
     name: angular-15-client-svc
