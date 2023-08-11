@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: angular-15-client
-          image: quay.io/redhat-user-workloads/atul-fulambarkar-tenant/tutorial-with-docker/angular-15-client-tutorialsonline:build-9ea4a-1691748305
+          image: quay.io/redhat-user-workloads/atul-fulambarkar-tenant/tutorialsonline/angular-15-client-tutorialsonline:build-0b6fd-1691762374
           ports:
             - name: http
               containerPort: 3001
