@@ -7,8 +7,8 @@ RUN npm run build
 # Serve Application using Nginx Server
 FROM nginx:alpine
 
-RUN chgrp -R root /var /etc /etc/nginx /var/run/ /var/run/nginx.pid && \
-    chmod -R 777 /var /etc /etc/nginx /var/run/ /var/run/nginx.pid
+RUN chgrp -R root /var /etc /etc/nginx /var/run/  && \
+    chmod -R 777 /var /etc /etc/nginx /var/run/ 
     
 COPY nginx.conf /etc/nginx/    
 COPY --from=build /app/dist/angular-15-crud /usr/share/nginx/html
