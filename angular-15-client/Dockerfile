@@ -24,8 +24,8 @@ FROM quay.io/jitesoft/nginx:latest
 # Copy the build output to replace the default nginx contents.
 COPY --from=build /usr/local/app/dist/. /usr/share/nginx/html
 
-RUN chgrp -R root /var/cache/nginx /var/run /var/log/nginx && \
-    chmod -R 777 /var/cache/nginx /var/run /var/log/nginx
+RUN chgrp -R root  /var/run /var/log/nginx && \
+    chmod -R 777  /var/run /var/log/nginx
 
 EXPOSE 80
 
