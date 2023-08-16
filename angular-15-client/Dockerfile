@@ -27,6 +27,6 @@ COPY --from=build /usr/local/app/dist/. /usr/share/nginx/html
 RUN chgrp -R root  /var/run /var/log/nginx && \
     chmod -R 777  /var/run /var/log/nginx
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]
