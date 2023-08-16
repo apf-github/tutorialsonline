@@ -11,4 +11,4 @@ RUN chgrp -R root /var  && \
     chmod -R 777 /var 
     
 COPY --from=build /app/dist/angular-15-crud /usr/share/nginx/html
-EXPOSE 8080
+EXPOSE 8090
